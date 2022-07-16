@@ -6,7 +6,7 @@ class TotalLocations(Range):
     """Number of location checks which are added to the Risk of Rain playthrough."""
     display_name = "Total Locations"
     range_start = 10
-    range_end = 500
+    range_end = 200
     default = 20
 
 
@@ -31,6 +31,11 @@ class ItemPickupStep(Range):
 class AllowLunarItems(DefaultOnToggle):
     """Allows Lunar items in the item pool."""
     display_name = "Enable Lunar Item Shuffling"
+
+
+class AllowVoidItems(DefaultOnToggle):
+    """Allows Void items in the item pool (Requires Survivors of the Void)."""
+    display_name = "Enable Void Item Shuffling (SOTV Only)"
 
 
 class StartWithRevive(DefaultOnToggle):
@@ -109,6 +114,13 @@ class LunarItem(Range):
     range_end = 100
     default = 16
 
+class VoidItem(Range):
+    """Weight of void items in the item pool"""
+    display_name = "Void Items"
+    range_start = 0
+    range_end = 100
+    default = 16
+
 
 class Equipment(Range):
     """Weight of equipment items in the item pool."""
@@ -128,6 +140,7 @@ class ItemWeights(Choice):
     Uncommon puts a large number of uncommon items in the pool.<br>
     Legendary puts a large number of legendary items in the pool.<br>
     Lunartic makes everything a lunar item.<br>
+    Voidborn makes everything a void item.<br>
     Chaos generates the pool completely at random with rarer items having a slight cap to prevent this option being too easy.<br>
     No Scraps removes all scrap items from the item pool.<br>
     Even generates the item pool with every item having an even weight.<br>
@@ -138,10 +151,11 @@ class ItemWeights(Choice):
     option_uncommon = 2
     option_legendary = 3
     option_lunartic = 4
-    option_chaos = 5
-    option_no_scraps = 6
-    option_even = 7
-    option_scraps_only = 8
+    option_voidborn = 5
+    option_chaos = 6
+    option_no_scraps = 7
+    option_even = 8
+    option_scraps_only = 9
 
 #define a dictionary for the weights of the generated item pool.
 ror2_weights: typing.Dict[str, type(Option)] = {
@@ -154,6 +168,7 @@ ror2_weights: typing.Dict[str, type(Option)] = {
     "legendary_item":       LegendaryItem,
     "boss_item":            BossItem,
     "lunar_item":           LunarItem,
+    "void_item":            VoidItem,
     "equipment":            Equipment
 }
 
@@ -163,6 +178,7 @@ ror2_options: typing.Dict[str, type(Option)] = {
     "start_with_revive":    StartWithRevive,
     "item_pickup_step":     ItemPickupStep,
     "enable_lunar":         AllowLunarItems,
+    "enable_void":          AllowVoidItems,
     "item_weights":         ItemWeights,
     "item_pool_presets":    ItemPoolPresetToggle,
     **ror2_weights

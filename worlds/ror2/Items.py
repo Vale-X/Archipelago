@@ -17,6 +17,7 @@ item_table = {
     "Item Scrap, Green": 37009,
     "Item Scrap, Red": 37010,
     "Item Scrap, Yellow": 37011,
+    "Void Item": 37012,
     "Victory": None,
     "Beat Level One": None,
     "Beat Level Two": None,
@@ -35,6 +36,7 @@ default_weights = {
     "Legendary Item": 8,
     "Boss Item": 4,
     "Lunar Item": 16,
+    "Void Item": 16,
     "Equipment": 32
 }
 
@@ -48,6 +50,7 @@ new_weights = {
     "Legendary Item": 10,
     "Boss Item": 5,
     "Lunar Item": 10,
+    "Void Item": 10,
     "Equipment": 20
 }
 
@@ -61,6 +64,7 @@ uncommon_weights = {
     "Legendary Item": 10,
     "Boss Item": 5,
     "Lunar Item": 15,
+    "Void Item": 15,
     "Equipment": 20
 }
 
@@ -74,6 +78,7 @@ legendary_weights = {
     "Legendary Item": 100,
     "Boss Item": 5,
     "Lunar Item": 15,
+    "Void Item": 15,
     "Equipment": 20
 }
 
@@ -87,6 +92,21 @@ lunartic_weights = {
     "Legendary Item": 0,
     "Boss Item": 0,
     "Lunar Item": 100,
+    "Void Item": 0,
+    "Equipment": 0
+}
+
+voidborn_weights = {
+    "Item Scrap, Green": 0,
+    "Item Scrap, Red": 0,
+    "Item Scrap, Yellow": 0,
+    "Item Scrap, White": 0,
+    "Common Item": 0,
+    "Uncommon Item": 0,
+    "Legendary Item": 0,
+    "Boss Item": 0,
+    "Lunar Item": 0,
+    "Void Item": 100,
     "Equipment": 0
 }
 
@@ -100,6 +120,7 @@ no_scraps_weights = {
     "Legendary Item": 15,
     "Boss Item": 5,
     "Lunar Item": 10,
+    "Void Item": 10,
     "Equipment": 25
 }
 
@@ -113,6 +134,7 @@ even_weights = {
     "Legendary Item": 1,
     "Boss Item": 1,
     "Lunar Item": 1,
+    "Void Item": 1,
     "Equipment": 1
 }
 
@@ -126,6 +148,7 @@ scraps_only = {
     "Legendary Item": 0,
     "Boss Item": 0,
     "Lunar Item": 0,
+    "Void Item": 0,
     "Equipment": 0
 }
 
@@ -135,6 +158,7 @@ item_pool_weights: typing.Dict[int, typing.Dict[str, int]] = {
     2: uncommon_weights,
     3: legendary_weights,
     4: lunartic_weights,
+    5: voidborn_weights,
     6: no_scraps_weights,
     7: even_weights,
     8: scraps_only

@@ -34,7 +34,7 @@ class RiskOfRainWorld(World):
     item_name_to_id = item_table
     location_name_to_id = location_table
 
-    data_version = 3
+    data_version = 0
     forced_auto_forfeit = True
     web = RiskOfWeb()
 
@@ -47,7 +47,7 @@ class RiskOfRainWorld(World):
         pool_option = self.world.item_weights[self.player].value
         if self.world.item_pool_presets[self.player].value:
             # generate chaos weights if the preset is chosen
-            if pool_option == 5:
+            if pool_option == 6:
                 junk_pool = {
                     "Item Scrap, Green": self.world.random.randint(0, 80),
                     "Item Scrap, Red": self.world.random.randint(0, 45),
@@ -58,6 +58,7 @@ class RiskOfRainWorld(World):
                     "Legendary Item": self.world.random.randint(0, 30),
                     "Boss Item": self.world.random.randint(0, 20),
                     "Lunar Item": self.world.random.randint(0, 60),
+                    "Void Item": self.world.random.randint(0, 60),
                     "Equipment": self.world.random.randint(0, 40)
                 }
             else:
@@ -73,6 +74,7 @@ class RiskOfRainWorld(World):
                 "Legendary Item": self.world.legendary_item[self.player].value,
                 "Boss Item": self.world.boss_item[self.player].value,
                 "Lunar Item": self.world.lunar_item[self.player].value,
+                "Void Item": self.world.void_item[self.player].value,
                 "Equipment": self.world.equipment[self.player].value
             }
 
@@ -80,6 +82,11 @@ class RiskOfRainWorld(World):
         if not self.world.enable_lunar[self.player]:
             if not pool_option == 4:
                 junk_pool.pop("Lunar Item")
+        
+        # remove void items from the pool if they're disabled in the yaml unless voidborn is rolled
+        if not self.world.enable_void[self.player]:
+            if not pool_option == 5:
+                junk_pool.Pop("Void Item")
 
         # Generate item pool
         itempool = []
